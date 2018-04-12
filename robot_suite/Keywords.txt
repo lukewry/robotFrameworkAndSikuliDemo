@@ -1,0 +1,15 @@
+*** Test Cases ***
+
+*** Keywords ***
+Click Search
+
+Go Home
+
+Click More
+
+Search Val
+    [Arguments]    ${arg1}=92123
+
+Verify 92123
+
+Verify Invalid Zip Input

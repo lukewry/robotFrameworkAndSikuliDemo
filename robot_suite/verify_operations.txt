@@ -1,0 +1,35 @@
+*** Settings ***
+Library           calc.Calculator    WITH NAME    Calculator
+Library           testRedFin.TestRedFin    WITH NAME    TestRedFin      
+
+*** Test Cases ***
+Verify Redfin
+    [Tags]    Succeed
+    Open Red Fin Tab
+    Go Home
+    Click Search
+    Go Home
+
+Verify Zip Search
+    [Tags]    Succeed
+    Open Red Fin Tab
+    Go Home
+    Click More
+    Search Val    92123
+    Verify 92123
+
+Purposful Fail of Verify Zip Search
+    [Tags]    Fail
+    Open Red Fin Tab
+    Go Home
+    Click More
+    Search Val    92124
+    Verify 92123
+
+Verify Invalid Input
+    [Tags]    Succeed
+    Open Red Fin Tab
+    Go Home
+    Click More
+    Search Val    '921234hfdh'
+    Verify Invalid Zip Input

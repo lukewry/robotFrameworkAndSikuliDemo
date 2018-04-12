@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0 (Jython 2.7.0 on java1.8.0_161)" generated="20180411 14:24:00.731">
+<suite name="Verify Operations &amp; Verify Operations2" id="s1">
+<suite source="C:\Users\geust_tester\Documents\demo\robot_suite\verify_operations.txt" name="Verify Operations" id="s1-s1">
+<test name="Purposful Fail of Verify Zip Search" id="s1-s1-t1">
+<kw library="TestRedFin" name="Open Red Fin Tab">
+<msg level="TRACE" timestamp="20180411 14:24:02.804">Arguments: [  ]</msg>
+<msg level="INFO" timestamp="20180411 14:24:07.385">PASS: 
+PASS: Opened Red Fin</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:24:07.385">Source Image &lt;img src="../C:\Users\geust_tester\Documents\demo\calc.sikuli/1523316031852.png" /&gt;</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:24:07.385">Best Matches &lt;img src="../results/matches/2018-04-11_14-24-07.png" /&gt;</msg>
+<msg level="INFO" timestamp="20180411 14:24:07.389">Matched with score: 1.0
+[log] CLICK on L(1491,21)@S(0)[0,0 1920x1080] (532 msec)
+[log]  TYPE "https://www.redfin.com#ENTER."</msg>
+<msg level="TRACE" timestamp="20180411 14:24:07.392">Return: None</msg>
+<status endtime="20180411 14:24:07.392" starttime="20180411 14:24:02.803" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Go Home">
+<msg level="TRACE" timestamp="20180411 14:24:07.396">Arguments: [  ]</msg>
+<msg level="TRACE" timestamp="20180411 14:24:08.511">Return: None</msg>
+<status endtime="20180411 14:24:08.513" starttime="20180411 14:24:07.396" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Click More">
+<msg level="TRACE" timestamp="20180411 14:24:08.514">Arguments: [  ]</msg>
+<msg level="INFO" timestamp="20180411 14:24:09.393">[log] CLICK on L(430,703)@S(0)[0,0 1920x1080] (530 msec)</msg>
+<msg level="TRACE" timestamp="20180411 14:24:09.395">Return: None</msg>
+<status endtime="20180411 14:24:09.396" starttime="20180411 14:24:08.513" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Search Val">
+<arguments>
+<arg>92124</arg>
+</arguments>
+<msg level="TRACE" timestamp="20180411 14:24:09.402">Arguments: [ '92124' ]</msg>
+<msg level="INFO" timestamp="20180411 14:24:12.025">[log] CLICK on L(571,120)@S(0)[0,0 1920x1080] (538 msec)
+[log]  TYPE "92124#ENTER."</msg>
+<msg level="TRACE" timestamp="20180411 14:24:12.028">Return: None</msg>
+<status endtime="20180411 14:24:12.031" starttime="20180411 14:24:09.400" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Verify 92123">
+<msg level="TRACE" timestamp="20180411 14:24:12.035">Arguments: [  ]</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:24:15.779">Source Image &lt;img src="../C:\Users\geust_tester\Documents\demo\calc.sikuli/1522985172150.png" /&gt;</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:24:15.779">&lt;img src="../results/screenshots/2018-04-11_14-24-15.png" /&gt;</msg>
+<msg level="FAIL" timestamp="20180411 14:24:15.793">VerificationFailed: 
+FAIL: is not 92123 zipcode</msg>
+<msg level="DEBUG" timestamp="20180411 14:24:15.794">Traceback (most recent call last):
+  File "C:\Users\geust_tester\Documents\demo\calc.sikuli\calc.py", line 44, in verify92123
+    self.log.failed("\nFAIL: is not 92123 zipcode")
+  File "C:\Users\geust_tester\Documents\demo\calc.sikuli\logger.py", line 65, in failed
+    raise common.VerificationFailed(msg)</msg>
+<status endtime="20180411 14:24:15.794" starttime="20180411 14:24:12.035" status="FAIL"></status>
+</kw>
+<tags>
+<tag>Fail</tag>
+</tags>
+<status critical="yes" endtime="20180411 14:24:15.794" starttime="20180411 14:24:02.799" status="FAIL">VerificationFailed: 
+FAIL: is not 92123 zipcode</status>
+</test>
+<status endtime="20180411 14:24:15.806" starttime="20180411 14:24:00.999" status="FAIL"></status>
+</suite>
+<suite source="C:\Users\geust_tester\Documents\demo\robot_suite\verify_operations2.txt" name="Verify Operations2" id="s1-s2">
+<test name="Purposful Fail of Verify Zip Search" id="s1-s2-t1">
+<kw library="TestRedFin" name="Open Red Fin Tab">
+<msg level="TRACE" timestamp="20180411 14:24:15.850">Arguments: [  ]</msg>
+<msg level="INFO" timestamp="20180411 14:24:20.986">PASS: 
+PASS: Opened Red Fin</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:24:20.987">Source Image &lt;img src="../C:\Users\geust_tester\Documents\demo\calc.sikuli/1523316031852.png" /&gt;</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:24:20.987">Best Matches &lt;img src="../results/matches/2018-04-11_14-24-20.png" /&gt;</msg>
+<msg level="INFO" timestamp="20180411 14:24:20.988">Matched with score: 1.0
+[log] CLICK on L(1641,21)@S(0)[0,0 1920x1080] (544 msec)
+[log]  TYPE "https://www.redfin.com#ENTER."</msg>
+<msg level="TRACE" timestamp="20180411 14:24:20.990">Return: None</msg>
+<status endtime="20180411 14:24:20.991" starttime="20180411 14:24:15.850" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Go Home">
+<msg level="TRACE" timestamp="20180411 14:24:20.995">Arguments: [  ]</msg>
+<msg level="TRACE" timestamp="20180411 14:24:22.059">Return: None</msg>
+<status endtime="20180411 14:24:22.059" starttime="20180411 14:24:20.991" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Click More">
+<msg level="TRACE" timestamp="20180411 14:24:22.064">Arguments: [  ]</msg>
+<msg level="INFO" timestamp="20180411 14:24:22.931">[log] CLICK on L(430,703)@S(0)[0,0 1920x1080] (531 msec)</msg>
+<msg level="TRACE" timestamp="20180411 14:24:22.932">Return: None</msg>
+<status endtime="20180411 14:24:22.934" starttime="20180411 14:24:22.059" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Search Val">
+<arguments>
+<arg>92124</arg>
+</arguments>
+<msg level="TRACE" timestamp="20180411 14:24:22.937">Arguments: [ '92124' ]</msg>
+<msg level="INFO" timestamp="20180411 14:24:25.547">[log] CLICK on L(571,120)@S(0)[0,0 1920x1080] (537 msec)
+[log]  TYPE "92124#ENTER."</msg>
+<msg level="TRACE" timestamp="20180411 14:24:25.552">Return: None</msg>
+<status endtime="20180411 14:24:25.553" starttime="20180411 14:24:22.935" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Verify 92123">
+<msg level="TRACE" timestamp="20180411 14:24:25.561">Arguments: [  ]</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:24:29.077">Source Image &lt;img src="../C:\Users\geust_tester\Documents\demo\calc.sikuli/1522985172150.png" /&gt;</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:24:29.078">&lt;img src="../results/screenshots/2018-04-11_14-24-28.png" /&gt;</msg>
+<msg level="FAIL" timestamp="20180411 14:24:29.080">VerificationFailed: 
+FAIL: is not 92123 zipcode</msg>
+<msg level="DEBUG" timestamp="20180411 14:24:29.081">Traceback (most recent call last):
+  File "C:\Users\geust_tester\Documents\demo\calc.sikuli\calc.py", line 44, in verify92123
+    self.log.failed("\nFAIL: is not 92123 zipcode")
+  File "C:\Users\geust_tester\Documents\demo\calc.sikuli\logger.py", line 65, in failed
+    raise common.VerificationFailed(msg)</msg>
+<status endtime="20180411 14:24:29.082" starttime="20180411 14:24:25.557" status="FAIL"></status>
+</kw>
+<tags>
+<tag>Fail</tag>
+</tags>
+<status critical="yes" endtime="20180411 14:24:29.082" starttime="20180411 14:24:15.848" status="FAIL">VerificationFailed: 
+FAIL: is not 92123 zipcode</status>
+</test>
+<status endtime="20180411 14:24:29.092" starttime="20180411 14:24:15.822" status="FAIL"></status>
+</suite>
+<status endtime="20180411 14:24:29.104" starttime="20180411 14:24:00.741" status="FAIL"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2">Critical Tests</stat>
+<stat pass="0" fail="2">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="2">Fail</stat>
+</tag>
+<suite>
+<stat pass="0" fail="2" name="Verify Operations &amp; Verify Operations2" id="s1">Verify Operations &amp; Verify Operations2</stat>
+<stat pass="0" fail="1" name="Verify Operations" id="s1-s1">Verify Operations &amp; Verify Operations2.Verify Operations</stat>
+<stat pass="0" fail="1" name="Verify Operations2" id="s1-s2">Verify Operations &amp; Verify Operations2.Verify Operations2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

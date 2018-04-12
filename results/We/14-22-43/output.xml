@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0 (Jython 2.7.0 on java1.8.0_161)" generated="20180411 14:22:50.130">
+<suite source="C:\Users\geust_tester\Documents\demo\robot_suite\verify_operations.txt" name="Verify Operations" id="s1">
+<test name="Purposful Fail of Verify Zip Search" id="s1-t1">
+<kw library="TestRedFin" name="Open Red Fin Tab">
+<msg level="TRACE" timestamp="20180411 14:22:52.123">Arguments: [  ]</msg>
+<msg level="INFO" timestamp="20180411 14:22:56.793">PASS: 
+PASS: Opened Red Fin</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:22:56.793">Source Image &lt;img src="../C:\Users\geust_tester\Documents\demo\calc.sikuli/1523316031852.png" /&gt;</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:22:56.793">Best Matches &lt;img src="../results/matches/2018-04-11_14-22-56.png" /&gt;</msg>
+<msg level="INFO" timestamp="20180411 14:22:56.797">Matched with score: 1.0
+[log] CLICK on L(1250,21)@S(0)[0,0 1920x1080] (540 msec)
+[log]  TYPE "https://www.redfin.com#ENTER."</msg>
+<msg level="TRACE" timestamp="20180411 14:22:56.800">Return: None</msg>
+<status endtime="20180411 14:22:56.806" starttime="20180411 14:22:52.123" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Go Home">
+<msg level="TRACE" timestamp="20180411 14:22:56.812">Arguments: [  ]</msg>
+<msg level="TRACE" timestamp="20180411 14:22:57.895">Return: None</msg>
+<status endtime="20180411 14:22:57.897" starttime="20180411 14:22:56.808" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Click More">
+<msg level="TRACE" timestamp="20180411 14:22:57.900">Arguments: [  ]</msg>
+<msg level="INFO" timestamp="20180411 14:22:58.767">[log] CLICK on L(430,703)@S(0)[0,0 1920x1080] (545 msec)</msg>
+<msg level="TRACE" timestamp="20180411 14:22:58.770">Return: None</msg>
+<status endtime="20180411 14:22:58.772" starttime="20180411 14:22:57.899" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Search Val">
+<arguments>
+<arg>92124</arg>
+</arguments>
+<msg level="TRACE" timestamp="20180411 14:22:58.784">Arguments: [ '92124' ]</msg>
+<msg level="INFO" timestamp="20180411 14:23:01.320">[log] CLICK on L(571,120)@S(0)[0,0 1920x1080] (540 msec)
+[log]  TYPE "92124#ENTER."</msg>
+<msg level="TRACE" timestamp="20180411 14:23:01.324">Return: None</msg>
+<status endtime="20180411 14:23:01.324" starttime="20180411 14:22:58.779" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Verify 92123">
+<msg level="TRACE" timestamp="20180411 14:23:01.331">Arguments: [  ]</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:23:05.015">Source Image &lt;img src="../C:\Users\geust_tester\Documents\demo\calc.sikuli/1522985172150.png" /&gt;</msg>
+<msg level="INFO" html="yes" timestamp="20180411 14:23:05.016">&lt;img src="../results/screenshots/2018-04-11_14-23-04.png" /&gt;</msg>
+<msg level="FAIL" timestamp="20180411 14:23:05.026">VerificationFailed: 
+FAIL: is not 92123 zipcode</msg>
+<msg level="DEBUG" timestamp="20180411 14:23:05.027">Traceback (most recent call last):
+  File "C:\Users\geust_tester\Documents\demo\calc.sikuli\calc.py", line 44, in verify92123
+    self.log.failed("\nFAIL: is not 92123 zipcode")
+  File "C:\Users\geust_tester\Documents\demo\calc.sikuli\logger.py", line 65, in failed
+    raise common.VerificationFailed(msg)</msg>
+<status endtime="20180411 14:23:05.027" starttime="20180411 14:23:01.331" status="FAIL"></status>
+</kw>
+<tags>
+<tag>Fail</tag>
+</tags>
+<status critical="yes" endtime="20180411 14:23:05.027" starttime="20180411 14:22:52.119" status="FAIL">VerificationFailed: 
+FAIL: is not 92123 zipcode</status>
+</test>
+<status endtime="20180411 14:23:05.043" starttime="20180411 14:22:50.141" status="FAIL"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">Fail</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" name="Verify Operations" id="s1">Verify Operations</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,118 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>calc.sikuli</h2> <a href="calc.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt"># -*- coding: utf-8 -*-</span>
+
+<span class="kw">import</span> common
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+<span class="kw">from</span> logger <span class="kw">import</span> *
+<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> Region <span class="kw">as</span> SikuliRegion
+
+<span class="cmt"># enable slow motion if debug log level enabled</span>
+<span class="kw">if</span> common.cfgLoggingLevel.lower() == <span class="str">'debug'</span>:
+        setShowActions(False)
+
+<span class="cmt"># =============================================== #</span>
+<span class="cmt">#         Overwritten CalcLib methods             #</span>
+<span class="cmt"># =============================================== #</span>
+
+<span class="cmt"># function for calling native CalcLib methods</span>
+<span class="kw">def</span> sikuli_method(name, *args, **kwargs):
+        <span class="kw">return</span> sys.modules[<span class="str">'sikuli.Sikuli'</span>].__dict__[name](*args, **kwargs)
+
+<span class="cmt"># overwritten Screen.exists method</span>
+<span class="kw">def</span> exists(target, timeout=<span class="dig">0</span>):
+        addFoundImage(getFilename(target))
+        <span class="kw">return</span> sikuli_method(<span class="str">'exists'</span>, target, float(timeout))
+
+<span class="cmt"># =============================================== #</span>
+<span class="cmt">#          Overwritten CalcLib classes             #</span>
+<span class="cmt"># =============================================== #</span>
+
+<span class="cmt"># overwriten Sikuli Region class</span>
+<span class="kw">class</span> Region(SikuliRegion, BaseLogger):
+
+        <span class="kw">def</span> <span class="skw">click</span>(self, target, modifiers=<span class="dig">0</span>):
+                <span class="kw">try</span>:
+                        <span class="kw">return</span> SikuliRegion.<span class="skw">click</span>(self, target, modifiers)
+                <span class="kw">except</span> FindFailed, e:
+                        self.log.html_img(<span class="str">"Find Failed"</span>, <span class="str">"images/"</span> + getFilename(target))
+                        self.log.screenshot(msg=<span class="str">"Region"</span>, region=(self.getX(), self.getY(), self.getW(), self.getH()))
+                        <span class="kw">raise</span> e
+        <span class="kw">def</span> exists(self, target, timeout=None):
+                img = getFilename(target)
+                reg = (self.getX(), self.getY(), self.getW(), self.getH())
+                addFoundImage(img, reg)
+                <span class="kw">return</span> SikuliRegion.exists(self, target, timeout)
+</pre>
+</body>
+</html>

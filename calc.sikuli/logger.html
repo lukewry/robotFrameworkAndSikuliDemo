@@ -1,0 +1,195 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>calc.sikuli</h2> <a href="calc.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt"># -*- coding: utf-8 -*-</span>
+
+<span class="kw">import</span> logging
+<span class="kw">import</span> datetime
+<span class="kw">import</span> shutil
+<span class="kw">import</span> common
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+
+<span class="cmt"># hack to properly handle WARNING log level</span>
+logging.addLevelName(logging.WARNING, <span class="str">'WARN'</span>)
+<span class="cmt"># add HTML log level</span>
+HTML = logging.INFO + <span class="dig">5</span>
+logging.addLevelName(HTML, <span class="str">'HTML'</span>)
+
+<span class="kw">class</span> RobotHandler(logging.Handler):
+    <span class="kw">def</span> __init__(self):
+        logging.Handler.__init__(self, level=logging.DEBUG)
+
+    <span class="kw">def</span> emit(self, record):
+        <span class="kw">print</span> self.format(record)
+
+    <span class="kw">def</span> format(self, record):
+        <span class="kw">if</span> <span class="kw">not</span> self.formatter:
+            <span class="cmt"># add default formatter</span>
+                        self.formatter = logging.Formatter(<span class="str">'*%(levelname)s* %(message)s'</span>)
+        <span class="kw">return</span> self.formatter.format(record)
+
+<span class="kw">class</span> RobotLogger(logging.Logger):
+        <span class="kw">def</span> __init__(self, name=<span class="str">'robot'</span>, level=logging.INFO):
+                <span class="kw">if</span> common.cfgLoggingLevel.lower() == <span class="str">'debug'</span>:
+                        level = logging.DEBUG
+                logging.Logger.__init__(self, name, level)
+                self.addHandler(RobotHandler())
+
+        <span class="kw">def</span> _get_unique_name(self, prefix=<span class="str">""</span>, suffix=<span class="str">""</span>):
+                now = datetime.datetime.now()
+                <span class="kw">return</span> prefix + now.strftime(<span class="str">'%Y-%m-%d_%H-%M-%S'</span>) + suffix
+
+        <span class="kw">def</span> screenshot(self, msg=<span class="str">""</span>, folder=<span class="str">"results/screenshots/"</span>, region=(<span class="dig">0</span>,<span class="dig">0</span>,<span class="dig">1440</span>,<span class="dig">900</span>)):
+                name = self._get_unique_name(suffix=<img src=".png" />)
+                img_src = <span class="skw">capture</span>(*region)
+                shutil.copy(img_src, folder + name)
+                self.html_img(msg, folder + name)
+
+        <span class="kw">def</span> passed(self, msg, *args, **kwargs):
+                self.info(<span class="str">'PASS: '</span> + msg, *args, **kwargs)
+
+                <span class="kw">if</span> self.isEnabledFor(logging.DEBUG) <span class="kw">and</span> len(getLastFoundImages()) != <span class="dig">0</span>:
+                        <span class="cmt"># source image</span>
+                        self.html_img(<span class="str">"Source Image"</span>, common.cfgImageLibrary + <span class="str">'/'</span> + getLastFoundImage())
+                        <span class="cmt"># matched image</span>
+                        last_match = SCREEN.getLastMatch()
+                        region = (last_match.getX(), last_match.getY(), last_match.getW(), last_match.getH())
+                        self.screenshot(msg=<span class="str">"Best Matches"</span>, folder=<span class="str">'results/matches/'</span>, region=region)
+                        <span class="cmt"># score of match</span>
+                        self.info(<span class="str">"Matched with score: %s"</span> % last_match.getScore())
+
+        <span class="kw">def</span> failed(self, msg, *args, **kwargs):
+                <span class="kw">if</span> self.isEnabledFor(logging.DEBUG):
+                        <span class="kw">if</span> len(getLastFoundImages()) != <span class="dig">0</span>:
+                                <span class="cmt"># source image</span>
+                                self.html_img(<span class="str">"Source Image"</span>, common.cfgImageLibrary + <span class="str">'/'</span> + getLastFoundImage())
+                        <span class="cmt"># screenshot</span>
+                        self.screenshot()
+                <span class="kw">raise</span> common.VerificationFailed(msg)
+
+        <span class="kw">def</span> html(self, msg, *args, **kwargs):
+                self.log(HTML, msg, *args, **kwargs)
+
+        <span class="kw">def</span> html_img(self, msg, image):
+                self.html(<span class="str">'%s &lt;img src="../%s" /&gt;'</span> % (msg, image))
+
+<span class="kw">class</span> BaseLogger(object):
+        <span class="str">""" Base class for logging support """</span>
+        log = RobotLogger()
+
+<span class="cmt">#============= Modification to RootLogger ===============#</span>
+<span class="cmt"># Use class RobotLogger instead of RootLogger as it support</span>
+<span class="cmt"># additional methods: passed(), failed()</span>
+
+<span class="cmt"># setup log level for RootLogger </span>
+<span class="cmt">#logging.basicConfig(level=logging.INFO)</span>
+<span class="cmt"># remove default StreamHandler</span>
+<span class="cmt">#logging.getLogger('').removeHandler(logging.getLogger('').handlers[0])</span>
+<span class="cmt"># add RobotHandler to the RootLogger</span>
+<span class="cmt">#logging.getLogger('').addHandler(RobotHandler())</span>
+<span class="cmt">#========================================================#</span>
+
+<span class="cmt"># =============================================== #</span>
+<span class="cmt">#          Helper functions methods               #</span>
+<span class="cmt"># =============================================== #</span>
+
+<span class="cmt"># functions for accessing lastly searched images and region</span>
+_lastFoundImages = []
+_lastFoundRegion = None
+<span class="cmt"># flag for checking whether last image was already poped</span>
+<span class="cmt"># to prevent appearence old images in log file </span>
+_is_new_image = <span class="dig">0</span>
+
+<span class="kw">def</span> getLastFoundImages():
+        <span class="kw">return</span> _lastFoundImages
+<span class="kw">def</span> getLastFoundImage():
+        _is_new_image = <span class="dig">0</span>
+        <span class="kw">return</span> _lastFoundImages.pop()
+<span class="kw">def</span> getLastFoundRegion():
+        reg = _lastFoundRegion
+        _lastFoundRegion = None
+        <span class="kw">return</span> reg
+<span class="kw">def</span> addFoundImage(img, reg=None):
+        _lastFoundImages.append(img)
+        _lastFoundRegion = reg
+        _is_new_image = <span class="dig">1</span>
+
+<span class="cmt"># return filename from pattern's target object</span>
+<span class="kw">def</span> getFilename(target):
+        <span class="kw">try</span>:
+                filename = target.getFilename()
+        <span class="kw">except</span>:
+                filename = target
+        <span class="kw">return</span> filename
+</pre>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0 (Jython 2.7.0 on java1.8.0_161)" generated="20180410 22:06:08.322">
+<suite source="C:\Users\geust_tester\Documents\demo\robot_suite\verify_operations.txt" name="Verify Operations" id="s1">
+<test name="Purposful Fail of Verify Zip Search" id="s1-t1">
+<kw library="TestRedFin" name="Open Red Fin Tab">
+<msg level="TRACE" timestamp="20180410 22:06:11.119">Arguments: [  ]</msg>
+<msg level="INFO" timestamp="20180410 22:06:15.637">PASS: 
+PASS: Opened Red Fin</msg>
+<msg level="INFO" html="yes" timestamp="20180410 22:06:15.638">Source Image &lt;img src="../C:\Users\geust_tester\Documents\demo\calc.sikuli/1523316031852.png" /&gt;</msg>
+<msg level="INFO" html="yes" timestamp="20180410 22:06:15.638">Best Matches &lt;img src="../results/matches/2018-04-10_22-06-15.png" /&gt;</msg>
+<msg level="INFO" timestamp="20180410 22:06:15.638">Matched with score: 1.0
+[log] CLICK on L(285,21)@S(0)[0,0 1920x1080] (542 msec)
+[log]  TYPE "https://www.redfin.com#ENTER."</msg>
+<msg level="TRACE" timestamp="20180410 22:06:15.642">Return: None</msg>
+<status endtime="20180410 22:06:15.642" starttime="20180410 22:06:11.117" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Go Home">
+<msg level="TRACE" timestamp="20180410 22:06:15.646">Arguments: [  ]</msg>
+<msg level="TRACE" timestamp="20180410 22:06:16.502">Return: None</msg>
+<status endtime="20180410 22:06:16.505" starttime="20180410 22:06:15.646" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Click More">
+<msg level="TRACE" timestamp="20180410 22:06:16.508">Arguments: [  ]</msg>
+<msg level="INFO" timestamp="20180410 22:06:17.391">[log] CLICK on L(430,703)@S(0)[0,0 1920x1080] (549 msec)</msg>
+<msg level="TRACE" timestamp="20180410 22:06:17.394">Return: None</msg>
+<status endtime="20180410 22:06:17.397" starttime="20180410 22:06:16.507" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Search Val">
+<arguments>
+<arg>92124</arg>
+</arguments>
+<msg level="TRACE" timestamp="20180410 22:06:17.406">Arguments: [ '92124' ]</msg>
+<msg level="INFO" timestamp="20180410 22:06:20.008">[log] CLICK on L(571,120)@S(0)[0,0 1920x1080] (541 msec)
+[log]  TYPE "92124#ENTER."</msg>
+<msg level="TRACE" timestamp="20180410 22:06:20.010">Return: None</msg>
+<status endtime="20180410 22:06:20.010" starttime="20180410 22:06:17.402" status="PASS"></status>
+</kw>
+<kw library="Calculator" name="Verify 92123">
+<msg level="TRACE" timestamp="20180410 22:06:20.019">Arguments: [  ]</msg>
+<msg level="INFO" html="yes" timestamp="20180410 22:06:24.697">Source Image &lt;img src="../C:\Users\geust_tester\Documents\demo\calc.sikuli/1522985172150.png" /&gt;</msg>
+<msg level="INFO" html="yes" timestamp="20180410 22:06:24.698">&lt;img src="../results/screenshots/2018-04-10_22-06-24.png" /&gt;</msg>
+<msg level="FAIL" timestamp="20180410 22:06:24.731">VerificationFailed: 
+FAIL: is not 92123 zipcode</msg>
+<msg level="DEBUG" timestamp="20180410 22:06:24.731">Traceback (most recent call last):
+  File "C:\Users\geust_tester\Documents\demo\calc.sikuli\calc.py", line 44, in verify92123
+    self.log.failed("\nFAIL: is not 92123 zipcode")
+  File "C:\Users\geust_tester\Documents\demo\calc.sikuli\logger.py", line 65, in failed
+    raise common.VerificationFailed(msg)</msg>
+<status endtime="20180410 22:06:24.731" starttime="20180410 22:06:20.016" status="FAIL"></status>
+</kw>
+<tags>
+<tag>Fail</tag>
+</tags>
+<status critical="yes" endtime="20180410 22:06:24.749" starttime="20180410 22:06:11.113" status="FAIL">VerificationFailed: 
+FAIL: is not 92123 zipcode</status>
+</test>
+<status endtime="20180410 22:06:24.754" starttime="20180410 22:06:08.333" status="FAIL"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">Fail</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" name="Verify Operations" id="s1">Verify Operations</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
